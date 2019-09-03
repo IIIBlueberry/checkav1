@@ -2,7 +2,7 @@ import datetime
 import subprocess
 import os
 from datetime import datetime
-yto = subprocess.Popen(["youtube-dl", "-i", "-F", "PL0gdCDw52PLWC3Im-OP3CfyJFozvqCSuH"], stdout=subprocess.PIPE)
+yto = subprocess.Popen(["youtube-dl", "-i", "-F", "PLrEnWoR732-BHrPp_Pm8_VleD68f9s14-"], stdout=subprocess.PIPE)
 abc, err = yto.communicate()
 
 resDict  = {b'394': ['l144p', '144p', 0],
@@ -38,6 +38,7 @@ for id, data in resDict.items():
 	print('%s : %d'  % (data[1], data[2]), file=f)
 	print('%s : %d'  % (data[1], data[2]))
 
+print('---')
 print('---', file=f)
 for elem in encodedArr:
 	print('https://www.youtube.com/watch?v=' + elem.decode('utf-8'), file=f)
