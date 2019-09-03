@@ -1,13 +1,9 @@
 import datetime
 import subprocess
 import os
-
+from datetime import datetime
 yto = subprocess.Popen(["youtube-dl", "-i", "-F", "PL0gdCDw52PLWC3Im-OP3CfyJFozvqCSuH"], stdout=subprocess.PIPE)
 abc, err = yto.communicate()
-
-#f = open("av1-playlist-F.txt","wb")
-#f.write(abc)
-#f.close()
 
 resDict  = {b'394': ['l144p', '144p', 0],
 		    b'395': ['l240p', '240p', 0],
@@ -32,11 +28,18 @@ for line in abc.splitlines():
 		if videoID not in encodedArr:
 			encodedArr.append(videoID)
 
-print(datetime.datetime.now())
+dateTimeObj = datetime.now()
+timestampStr = dateTimeObj.strftime("%y-%m-%d---%H.%M%p")
+
+print(timestampStr)
+f = open('%s-result.txt' % timestampStr,"w")
 
 for id, data in resDict.items():
+	print('%s : %d'  % (data[1], data[2]), file=f)
 	print('%s : %d'  % (data[1], data[2]))
 
-print('---')
+print('---', file=f)
 for elem in encodedArr:
+	print('https://www.youtube.com/watch?v=' + elem.decode('utf-8'), file=f)
 	print('https://www.youtube.com/watch?v=' + elem.decode('utf-8'))
+f.close()
